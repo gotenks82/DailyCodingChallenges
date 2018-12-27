@@ -7,9 +7,10 @@ You can assume that the messages are decodable. For example, '001' is not allowe
  */
 
 fun main(args: Array<String>) {
-    val possibleDecodedMessages = possibleDecodedMessages("11121")
-    println(possibleDecodedMessages.size)
-    println(possibleDecodedMessages.joinToString("\n"))
+    possibleDecodedMessages("11121").let {
+        println(it.size)
+        println(it.joinToString("\n"))
+    }
 }
 
 val mappings = (1..26).map {
@@ -25,7 +26,7 @@ fun possibleDecodedMessages(encodedMsg: String): List<String> {
     val list = mutableListOf<String>()
 
     (1..mappingsMaxLength).forEach { n ->
-        encodedMsg.takeIf { it.length > n - 1 }?.take(n).let { token ->
+        encodedMsg.takeIf { it.length >= n }?.take(n).let { token ->
             mappings[token]?.let { mappedToken ->
                 list.addAll(possibleDecodedMessages(encodedMsg.drop(n)).map { "$mappedToken$it" })
             }
