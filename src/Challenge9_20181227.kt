@@ -10,7 +10,7 @@ Follow-up: Can you do this in O(N) time and constant space?
 
 fun main(args: Array<String>) {
     println(getLargestNonAdjacentSum(arrayOf(5, 5, 10, 100, 10, 5)))
-    println(optimalSumNextNonAdjacent(arrayOf(5, 5, 10, 100, 10, 5)))
+    println(optimalSumNonAdjacent(arrayOf(5, 5, 10, 100, 10, 5)))
 }
 
 fun getLargestNonAdjacentSum(array: Array<Int>): Int? {
@@ -31,7 +31,7 @@ fun sumNextNonAdjacent(array: Array<Int>, currSum: Int, currIndex: Int, sums: Ar
 }
 
 // taken from GeeksForGeeks
-fun optimalSumNextNonAdjacent(array: Array<Int>): Int {
+fun optimalSumNonAdjacent(array: Array<Int>): Int {
     var maxIncludingPrevious = 0
     var maxExcludingPrevious = 0
 
