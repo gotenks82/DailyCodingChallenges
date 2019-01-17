@@ -13,6 +13,11 @@ fun main(args: Array<String>) {
         println(this)
         println(this.decodeRunLength())
     }
+
+    "AAAAAAAAAAAAAAAAABBBCCCCCCCCCCCCCCCCDAA".encodeRunLength().run {
+        println(this)
+        println(this.decodeRunLength())
+    }
 }
 
 fun String.encodeRunLength(): String {
@@ -34,9 +39,15 @@ fun String.encodeRunLength(): String {
 
 fun String.decodeRunLength(): String {
     val builder = StringBuilder()
-    for (i in 0..this.lastIndex / 2) {
-        val index = i * 2
-        builder.append("${this[index + 1]}".repeat(this[index] - '0'))
+    var currString = ""
+    for (i in 0..this.lastIndex) {
+        if (this[i].isDigit()) {
+            currString += this[i]
+        } else {
+            builder.append("${this[i]}".repeat(currString.toInt()))
+            currString = ""
+        }
     }
+
     return builder.toString()
 }
